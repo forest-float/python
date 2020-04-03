@@ -21,33 +21,25 @@ with open("text.txt", "r+", encoding="GBK") as fil:
     texts = bf.find_all('div', class_='showtxt')
     # print(texts[0].text.replace('\xa0'*8, ' '))
     # print(texts)
-if __name__ == "__main__":
-    server = 'http://www.biqukan.com/'
-    target = 'http://www.biqukan.com/1_1094/'
-    req = requests.get(url = target)
-    req.encoding = "GBK"
-    html = req.text
+# if __name__ == "__main__":
+server = 'http://www.biqukan.com/'
+target = 'http://www.biqukan.com/1_1094/'
+req = requests.get(url = target)
+req.encoding = "GBK"
+html = req.text
 
-    div_bf = BeautifulSoup(html, features="lxml")
-    div = div_bf.find_all('div', class_ = 'listmain')
+div_bf = BeautifulSoup(html, features="lxml")
+div = div_bf.find_all('div', class_ = 'listmain')
 
-    #print(div[0])
-    a_bf = BeautifulSoup(str(div[0]), features="lxml")
-    a = a_bf.find_all('a')
+#print(div[0])
+a_bf = BeautifulSoup(str(div[0]), features="lxml")
+a = a_bf.find_all('a')
 for each in a:
     print(each.string, server + each.get('href'))
 print(each)
 
 
-"""
-类说明:下载《笔趣看》网小说《一念永恒》
-Parameters:
-    无
-Returns:
-    无
-Modify:
-    2017-09-13
-"""
+
 class downloader(object):
 
     def __init__(self):
@@ -90,9 +82,9 @@ class downloader(object):
     def get_contents(self, target):
         req = requests.get(url = target)
         html = req.text
-        bf = BeautifulSoup(html)
+        bf = BeautifulSoup(html, features="lxml")
         texts = bf.find_all('div', class_ = 'showtxt')
-        texts = texts[0].text.replace('\xa0'*8,'\n\n')
+        texts = texts[0].text.replace('\xa0'*8, '\n\n')
         return texts
 
     """
@@ -108,7 +100,7 @@ class downloader(object):
     """
     def writer(self, name, path, text):
         write_flag = True
-        with open(path, 'a', encoding='utf-8') as f:
+        with open(path, 'a', encoding='GBK') as f:
             f.write(name + '\n')
             f.writelines(text)
             f.write('\n\n')
