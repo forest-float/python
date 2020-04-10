@@ -2,7 +2,7 @@
 # @Author: wlp
 # @Date:   2020-04-02 17:11:08
 # @Last Modified by:   forest-float
-# @Last Modified time: 2020-04-03 09:35:52
+# @Last Modified time: 2020-04-08 14:18:30
 
 
 
@@ -20,7 +20,10 @@ d = list(c)
 g = list(c)
 print(d)
 print(g)
-
+# filter() 函数用于过滤序列，过滤掉不符合条件的元素，
+# 返回一个迭代器对象，如果要转换为列表，可以使用 list() 来转换。
+# 该接收两个参数，第一个为函数，第二个为序列，序列的每个元素作为参数传递给函数进行判，
+# 然后返回 True 或 False，最后将返回 True 的元素放到新列表中。
 e = filter(lambda x:x[0] == x[1],d)
 f = list(e)
 print(f)

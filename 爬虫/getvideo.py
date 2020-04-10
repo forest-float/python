@@ -2,7 +2,7 @@
 # @Author: wlp
 # @Date:   2020-04-03 16:29:37
 # @Last Modified by:   forest-float
-# @Last Modified time: 2020-04-03 17:05:42
+# @Last Modified time: 2020-04-07 12:04:55
 
 # 导入的库包括用于爬取和解析网页的库，还包括创建线程池的库和进行其他处理的库，
 import json
@@ -35,7 +35,7 @@ def create_folder(aid):
     if not os.path.exists(aid):
         os.mkdir(aid)
 
-        def remove_move_file(aid):
+def remove_move_file(aid):
     '''删除和移动文件'''
     file_list = os.listdir('./')
     for file in file_list:
