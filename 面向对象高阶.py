@@ -2,7 +2,7 @@
 # @Author: wlp
 # @Date:   2020-04-10 15:27:33
 # @Last Modified by:   forest-float
-# @Last Modified time: 2020-04-10 16:51:00
+# @Last Modified time: 2020-04-13 10:26:36
 
 class Person(object):
 
@@ -96,16 +96,39 @@ def main():
     person.play()
     # person.name = '白元芳'  # AttributeError: can't set attribute
 
+from abc import ABCMeta,abstractmethod
+from random import randint,randrange
 
 if __name__ == '__main__':
     main()
 
 
-    # @property
+    # @property访问器
     # def name(self):
     # 	return self._name
-    # @age.setter
+    # 	
+    # @age.setter修改器
+    # def age(self,age)
+    # 	self._age = age
 
-    # @staticmethod
+    # @staticmethod  静态函数
+    # @classmethod
+    # def now(cls):
+    # 	ctime = localtime(time())
+    # 	return cls(ctime.tm_hour)
+    # 
+    # 
+    # 实现抽象类的效果
+    # from abc import ABCMeta, abstractmethod
+    # from random import randint,randrange
+    # @abstractmethod
+    # 
+    # super().__init__()
+    # 
+    # isinstance(object,classtype)  会认为子类是一种父类类型，考虑继承关系
+    # type()不会认为子类是一种父类类型，不考虑继承关系
+    # 
+    # 限定类只能绑定哪些属性
+    # __slots__ = ("name", "age", "sex")
 
     
