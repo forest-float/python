@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: wlp
 # @Date:   2020-04-13 10:16:04
-# @Last Modified by:   forest-float
-# @Last Modified time: 2020-04-14 11:12:12
+# @Last Modified by:   wlp
+# @Last Modified time: 2020-04-20 13:12:58
 
 '''
 基本上使用tkinter来开发GUI应用需要以下5个步骤：
@@ -54,6 +54,7 @@ def main():
     button2 = tkinter.Button(panel, text="按钮2", command=confirm_to_quit)
     button2.pack(side='right')
     panel.pack(side='bottom')
+    
 
     # 开启主事件循环
     tkinter.mainloop()
