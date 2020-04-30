@@ -45,6 +45,9 @@ def main1():
     """主函数"""
     if not os.path.exists(PREFIX):
         os.mkdir(PREFIX)
+        # print(glob.glob(r"/home/qiaoyunhao/*/*.png"), "\n")
+        #  加上r让字符串不转义
+        # 返回所有匹配的文件路径列表
     for infile in glob.glob('images/*.png'):
         for size in (32, 64, 128):
             # 创建并启动线程
@@ -56,6 +59,54 @@ def main1():
 
 # if __name__ == '__main__':
 #     main()
+
+
+'''
+线程  abc为函数
+thread1 = threading.Thread(target=abc,args=(argv))
+thread1.start()
+thread1.join()
+'''
+
+
+#
+# class acoun:
+#     def __init__(self):
+#         self.bnalce = 0.0
+#         self.lock = threading.Lock
+#     def despot(self,adds):
+#         with self.lock:
+#             self.bnalce += adds
+#             self.lock
+
+# #自定义线程类
+# class addthread(threading.Thread):
+#     def __init__(self,account,add):
+#         self.account = account
+#         self.add = add
+#     def run(self):
+#         self.account.deposit(1)
+
+def test(value1, value2=None):
+    print("%s threading is printed %s, %s\n"%(threading.current_thread().name, value1, value2))
+    time.sleep(2)
+    return 'finished'
+
+def test_result(future):
+    print(future.result())
+
+
+import numpy as np
+from concurrent.futures import ThreadPoolExecutor
+threadPool = ThreadPoolExecutor(max_workers=4, thread_name_prefix="test_")
+for i in range(0, 10):
+    future = threadPool.submit(test, i, i+1)
+threadPool.shutdown(wait=True)
+
+
+
+
+
 
 
 # 多个线程竞争资源的情况。
@@ -118,6 +169,8 @@ def main2():
         futures.append(future)
     # 关闭线程池
     pool.shutdown()
+
+
     for future in futures:
         future.result()
     print(account.balance)
@@ -145,6 +198,8 @@ class Account():
         self.balance = balance
         lock = threading.Lock()
         self.condition = threading.Condition(lock)
+        # self.lock.acquire()加锁
+        # self.lock.release()解锁
 
     def withdraw(self, money):
         """取钱"""
@@ -249,7 +304,7 @@ def main4():
 
 
 # if __name__ == '__main__':
-#     main()
+#     main4()
 # 重点：多线程和多进程的比较。
 #
 # 以下情况需要使用多线程：
@@ -320,16 +375,23 @@ def main5():
 #
 # if __name__ == '__main__':
 #     main()
-# 说明：上面的代码使用get_event_loop函数获得系统默认的事件循环，通过gather函数可以获得一个future对象，future对象的add_done_callback可以添加执行完成时的回调函数，loop对象的run_until_complete方法可以等待通过future对象获得协程执行结果。
+# 说明：上面的代码使用get_event_loop函数获得系统默认的事件循环，
+# 通过gather函数可以获得一个future对象，future对象的add_done_callback
+# 可以添加执行完成时的回调函数，loop对象的run_until_complete方法可以
+# 等待通过future对象获得协程执行结果。
 #
-# Python中有一个名为aiohttp的三方库，它提供了异步的HTTP客户端和服务器，这个三方库可以跟asyncio模块一起工作，并提供了对Future对象的支持。Python 3.6中引入了async和await来定义异步执行的函数以及创建异步上下文，在Python 3.7中它们正式成为了关键字。下面的代码异步的从5个URL中获取页面并通过正则表达式的命名捕获组提取了网站的标题。
+# Python中有一个名为aiohttp的三方库，它提供了异步的HTTP客户端和服务器，
+# 这个三方库可以跟asyncio模块一起工作，并提供了对Future对象的支持。
+# Python 3.6中引入了async和await来定义异步执行的函数以及创建异步上下文，
+# 在Python 3.7中它们正式成为了关键字。下面的代码异步的从5个URL中获取页面
+# 并通过正则表达式的命名捕获组提取了网站的标题。
 
 import asyncio
 import re
 
 import aiohttp
 
-PATTERN = re.compile(r'\<title\>(?P<title>.*)\<\/title\>')
+PATTERN = re.compile(r'\<title\>(?P<title>.*)\/\<title\>')
 
 
 async def fetch_page(session, url):
