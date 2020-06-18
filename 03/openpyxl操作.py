@@ -27,11 +27,11 @@ wb.save(filename = dest_filename)
 
 from openpyxl import load_workbook
 
-
+#打开已有文件
 wb = load_workbook(filename = 'empty_book.xlsx')
 sheet_ranges = wb['range names']
-print(sheet_ranges['A1'].value)
-sheet_ranges['A1'] = 123
+print(sheet_ranges['A1'].value)#获取已有文件的值
+sheet_ranges['A1'] = 123#修改已有文件的值
 wb.save('empty_book.xlsx')
 
 
